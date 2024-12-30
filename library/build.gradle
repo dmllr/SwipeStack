@@ -29,6 +29,7 @@ project.afterEvaluate {
                 groupId = 'com.github.dmllr'
                 artifactId = 'SwipeStack'
                 version = '0.3.10'
+                artifact bundleReleaseAar
             }
         }
 
