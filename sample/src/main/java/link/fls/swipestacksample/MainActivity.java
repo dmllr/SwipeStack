@@ -95,20 +95,20 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
 
-        switch (item.getItemId()) {
-            case R.id.menuReset:
-                mSwipeStack.resetStack();
-                Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
-                return true;
-            case R.id.menuGitHub:
-                Intent browserIntent = new Intent(
-                        Intent.ACTION_VIEW, Uri.parse("https://github.com/flschweiger/SwipeStack"));
-                startActivity(browserIntent);
-                return true;
+        if (itemId == R.id.menuReset) {
+            mSwipeStack.resetStack();
+            Snackbar.make(mFab, R.string.stack_reset, Snackbar.LENGTH_SHORT).show();
+            return true;
+        } else if (itemId == R.id.menuGitHub) {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/flschweiger/SwipeStack"));
+            startActivity(browserIntent);
+            return true;
+        } else {
+            throw new IllegalStateException("Unexpected value: " + item.getItemId());
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements SwipeStack.SwipeS
 
     public class SwipeStackAdapter extends BaseAdapter {
 
-        private List<String> mData;
+        private final List<String> mData;
 
         SwipeStackAdapter(List<String> data) {
             this.mData = data;
