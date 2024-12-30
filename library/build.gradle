@@ -21,3 +21,19 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     implementation 'androidx.appcompat:appcompat:1.7.0'
 }
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            mavenPublish(MavenPublication) {
+                groupId = 'com.github.dmllr'
+                artifactId = 'SwipeStack'
+                version = '0.3.10'
+            }
+        }
+
+        repositories {
+            mavenLocal()
+        }
+    }
+}
